@@ -39,12 +39,12 @@ const Footer = () => {
                     <div>
                         <h6 className="text-xl font-medium text-white pb-4">Follow Us</h6>
                       <div className='flex gap-4'>
-                        <Link to='https://www.facebook.com/' className='text-white'> <FaFacebook /> </Link>
+                        <Link to='https://www.facebook.com/'target='_blank' className='text-white'> <FaFacebook /> </Link>
 
-                        <Link to='https://www.instagram.com/' className='text-white'> <FaSquareInstagram /> </Link>
+                        <Link to='https://www.instagram.com/' target='_blank' className='text-white'> <FaSquareInstagram /> </Link>
 
-                        <Link to='https://www.linkedin.com/' className='text-white'> <FaLinkedin /> </Link>
-                        <Link to='https://www.youtube.com/' className='text-white'> <FaYoutube /> </Link>
+                        <Link to='https://www.linkedin.com/' target='_blank' className='text-white'> <FaLinkedin /> </Link>
+                        <Link to='https://www.youtube.com/' target='_blank' className='text-white'> <FaYoutube /> </Link>
                       </div>
 
                     </div>

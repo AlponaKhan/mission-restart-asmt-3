@@ -45,7 +45,7 @@ const Navbar = () => {
                 </div>
 
                 <div>
-                    <Link to="https://github.com/AlponaKhan">
+                    <Link to="https://github.com/AlponaKhan" target='_blank'>
                         <button className='flex gap-2 rounded-sm items-center text-white font-semibold bg-linear-to-r from-[#632EE3] to-[#9F62F2] md:p-3 p-2'>
                             <IoLogoGithub />
                             Contribute
