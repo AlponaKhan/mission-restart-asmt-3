@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import playstore from '../../assets/playtore.png';
 import appStore from '../../assets/appStore.png';
 import hero from '../../assets/hero.png';
-import CardBanner from './CardBanner';
 
 const Banner = () => {
     return (
@@ -27,7 +26,6 @@ const Banner = () => {
             <div className='flex justify-center mx-3'>
                 <img src={hero} alt="" />
             </div>
-            <CardBanner></CardBanner>
         </div>
     );
 };

@@ -1,11 +1,15 @@
 import React from 'react';
 import Banner from './Banner';
+import CardBanner from './CardBanner';
+import TrendingApp from './TrendingApp';
 
-const Home = () => {
+const Home = ({dataPromise}) => {
     return (
         <div>
             <Banner></Banner>
-            <h2>this is home page</h2>
+            <CardBanner></CardBanner>
+            <TrendingApp dataPromise={dataPromise}></TrendingApp>
+            {/* <h2>this is home page</h2> */}
         </div>
     );
 };
