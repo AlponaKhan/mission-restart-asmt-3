@@ -10,7 +10,7 @@ import InstallationPage from './components/InstallationPage/InstallationPage.jsx
 import AppDetail from './components/AppDetailPage/AppDetail.jsx'
 
 
-const dataPromise = fetch('AppData.json').then(res=>res.json());
+const dataPromise = fetch('/AppData.json').then(res=>res.json());
 
 
 const router= createBrowserRouter([{
@@ -32,7 +32,9 @@ const router= createBrowserRouter([{
     {path:'installationPage', Component: InstallationPage},
     {
       path:"detail/:id",
-      element: <AppDetail></AppDetail>
+      element: <Suspense fallback={<h2>Loading...</h2>}>
+                <AppDetail dataPromise={dataPromise}></AppDetail>
+      </Suspense>
     }
   ]
 }])
