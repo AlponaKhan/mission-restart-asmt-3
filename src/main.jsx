@@ -7,6 +7,7 @@ import Root from './components/root/Root.jsx'
 import Home from './components/Home/Home.jsx'
 import AppsPage from './components/AppsPage/AppsPage.jsx'
 import InstallationPage from './components/InstallationPage/InstallationPage.jsx'
+import AppDetail from './components/AppDetailPage/AppDetail.jsx'
 
 
 const dataPromise = fetch('AppData.json').then(res=>res.json());
@@ -22,8 +23,17 @@ const router= createBrowserRouter([{
         <Home dataPromise={dataPromise}></Home>
       </Suspense>
       },
-    {path:'appsPage', Component: AppsPage},
-    {path:'installationPage', Component: InstallationPage}
+    {
+      path:'appsPage',
+      element: <Suspense fallback={<h2>Loading...</h2>}>
+        <AppsPage dataPromise={dataPromise}></AppsPage>
+      </Suspense>
+      },
+    {path:'installationPage', Component: InstallationPage},
+    {
+      path:"detail/:id",
+      element: <AppDetail></AppDetail>
+    }
   ]
 }])
 
