@@ -30,7 +30,12 @@ const router= createBrowserRouter([{
         <AppsPage dataPromise={dataPromise}></AppsPage>
       </Suspense>
       },
-    {path:'installationPage', Component: InstallationPage},
+    {
+      path:'installationPage', 
+      element: <Suspense fallback={<h2>Loading...</h2>}>
+                  <InstallationPage dataPromise={dataPromise} ></InstallationPage>
+      </Suspense>
+    },
     {
       path:"detail/:id",
       element: <Suspense fallback={<h2>Loading...</h2>}>

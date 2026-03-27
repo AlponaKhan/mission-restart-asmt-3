@@ -10,7 +10,8 @@ import AppError from '../ErrorPages/AppError';
 const AppDetail = ({ dataPromise }) => {
     const { id } = useParams();
 
-    const [install, setInstall] = useState(false);
+    
+    const [appsInstall, setAppsInstall] = useState([]);
 
     const allApps = use(dataPromise);
     // console.log(allApps);
@@ -20,12 +21,31 @@ const AppDetail = ({ dataPromise }) => {
     const oneApp = allApps.find(singleApp => String(singleApp.id) === id);
     // console.log(oneApp);
 
-    if(!oneApp){
+    if (!oneApp) {
         return <AppError></AppError>
     }
+
+    const [install, setInstall] = useState(()=>{
+        const saveIds= JSON.parse(localStorage.getItem('Apps')) || [];
+        return saveIds.includes(oneApp.id);
+    });
+    
     const { image, title, ratingAvg, downloads, description, companyName, reviews, size, ratings } = oneApp;
 
-    const para= description.split('\n\n').filter(p => p.trim() !== "");
+    const para = description.split('\n\n').filter(p => p.trim() !== "");
+
+
+    const handleInstallApps = (snglApp) => {
+        const alreadyInstalled = JSON.parse(localStorage.getItem('Apps')) || [];
+
+        if (!alreadyInstalled.includes(snglApp.id)) {
+            const updatedApps = [...alreadyInstalled, snglApp.id];
+            localStorage.setItem('Apps', JSON.stringify(updatedApps));
+            setAppsInstall(updatedApps);
+        }
+
+    }
+
     return (
         <div>
             <div className='flex flex-col md:flex-row md:gap-10 pt-10 md:pt-20 pb-10 w-fit mx-auto md:mx-20 md:w-auto px-3'>
@@ -56,7 +76,12 @@ const AppDetail = ({ dataPromise }) => {
                             <p className='font-extrabold text-4xl'>{reviews}</p>
                         </div>
                     </div>
-                    <button disabled={install} onClick={() => { setInstall(true); notify() }} className={`text-white font-semibold md:text-xl rounded-sm py-3 px-2 md:px-5 ${install ? 'bg-green-300 cursor-not-allowed' : 'bg-[#00D390] cursor-pointer'}`}>{install ? "Installed" : `Install Now (${size})`}</button>
+                    <button disabled={install}
+                        onClick={() => {
+                            setInstall(true);
+                            notify();
+                            handleInstallApps(oneApp)
+                        }} className={`text-white font-semibold md:text-xl rounded-sm py-3 px-2 md:px-5 ${install ? 'bg-green-300 cursor-not-allowed' : 'bg-[#00D390] cursor-pointer'}`}>{install ? "Installed" : `Install Now (${size})`}</button>
                     <ToastContainer />
 
                 </div>
@@ -74,10 +99,10 @@ const AppDetail = ({ dataPromise }) => {
             <div className='md:px-20 md:pb-20 md:pt-5  '>
                 <h2 className='pb-6 font-semibold text-2xl border-t border-gray-300 pt-10 w-fit mx-auto md:w-auto'>Description</h2>
                 {
-                    para.map((singlePara,index)=> <p key={index} className='text-[#627382] md:text-xl pb-14'>{singlePara}</p>)
+                    para.map((singlePara, index) => <p key={index} className='text-[#627382] md:text-xl pb-14'>{singlePara}</p>)
                 }
             </div>
-        </div>
+        </div >
     );
 };
 
