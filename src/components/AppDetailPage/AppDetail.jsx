@@ -5,6 +5,7 @@ import review from '../../assets/icon-review.png';
 import { useParams } from 'react-router';
 import { ToastContainer, toast } from 'react-toastify';
 import RatingChart from './RatingChart';
+import AppError from '../ErrorPages/AppError';
 
 const AppDetail = ({ dataPromise }) => {
     const { id } = useParams();
@@ -18,6 +19,10 @@ const AppDetail = ({ dataPromise }) => {
 
     const oneApp = allApps.find(singleApp => String(singleApp.id) === id);
     // console.log(oneApp);
+
+    if(!oneApp){
+        return <AppError></AppError>
+    }
     const { image, title, ratingAvg, downloads, description, companyName, reviews, size, ratings } = oneApp;
 
     const para= description.split('\n\n').filter(p => p.trim() !== "");
