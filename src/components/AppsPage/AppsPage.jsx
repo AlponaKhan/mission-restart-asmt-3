@@ -12,6 +12,8 @@ const AppsPage = ({ dataPromise }) => {
 
     const filteredApp = appData.filter(singleApp => singleApp.title.toLowerCase().includes(searchApp.toLowerCase()));
 
+    const appCount = filteredApp.length;
+
     const handleSearch =(e)=>{
         const value = e.target.value;
         setSearchApp(value);
@@ -28,7 +30,7 @@ const AppsPage = ({ dataPromise }) => {
             <p className='md:text-xl text-[#627382] pb-10 text-center px-3'>Explore All Apps on the Market developed by us. We code for Millions</p>
 
             <div className='md:flex items-center justify-between pb-4 md:mx-20'>
-                <p className='font-semibold text-xl md:text-2xl px-3 mb-4 md:mb-0'><span>({appData.length})</span> Apps Found</p>
+                <p className='font-semibold text-xl md:text-2xl px-3 mb-4 md:mb-0'><span>({appCount})</span> Apps Found</p>
                 <div className='relative px-3 w-full md:w-auto'>
                     <span className='absolute top-3 flex items-center px-2 md:px-4 text-[#627382]'>
                         <CiSearch />
