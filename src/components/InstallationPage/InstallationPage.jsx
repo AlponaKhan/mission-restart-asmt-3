@@ -44,7 +44,7 @@ const [sortApps, setSortApps]= useState('');
     }
     return (
         <div>
-            <h2 className='text-center font-bold text-3xl md:text-5xl pt-10 md:pt-20 pb-4'>Your Installed Apps</h2>
+            <h2 className='text-center font-bold text-3xl md:text-5xl pt-10 md:pt-20 pb-4'>My Installed Apps</h2>
             <p className='md:text-xl text-[#627382] pb-10 text-center px-3'>Explore All Trending Apps on the Market developed by us</p>
             <div className='md:flex items-center justify-between pb-4 md:mx-20'>
                 <p className='font-semibold text-xl md:text-2xl px-3 mb-4 md:mb-0'><span>{theApp.length}</span> Apps Found</p>
